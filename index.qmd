@@ -38,8 +38,8 @@ dat <- read_csv(file.path(here::here(), "data", "rnaseq.csv")) |>
 
 ## Agenda
 
-- Today's Exercise
-  - RNA-Seq data visualization - this lab borrows heavily from a [Carpentries incubator module on visualization](https://carpentries-incubator.github.io/bioc-intro/40-visualization.html).
+-   Today's Exercise
+    -   RNA-Seq data visualization - this lab borrows heavily from a [Carpentries incubator module on visualization](https://carpentries-incubator.github.io/bioc-intro/40-visualization.html).
 
 ## RNA-Seq data
 
@@ -55,7 +55,7 @@ Take a look at the distribution of the expression levels:
 #| message: false
 # () around the 'g1' variable enables you to create it and plot it in one call.
 (g1 <- dat |>
-    ggplot(expression) +
+    ggplot(aes(expression)) +
     geom_histogram(bins = 50))
 # You'll probably notice an automatic message that appears when drawing the histogram: `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 # Change the arguments bins or binwidth of geom_histogram() to change the number or width of the bins.
@@ -216,7 +216,7 @@ mean_exp_by_time_sex <- dat |>
     # Then group the data by gene, time, and sex
     group_by(gene, time, sex) |>
     # calculate the mean gene expression within each group
-    summarize(mean_exp = mean(l2exp)) |>
+    summarize(mean_exp = mean(l2exp))
 
 ggplot(mean_exp_by_time_sex,
         aes(time, mean_exp, group = sex, color = sex)) +
